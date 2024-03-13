@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  div
+    h3
+      a(href='/customer/create') Create New
+    h1 Customer List 
+    table.table.table-striped   
+      thead
+        tr 
+          th Id 
+          th Email 
+          th Fullname
+          th Image 
+          th Action
+      tbody 
+        if customers != ''
+          each item in customers
+            tr 
+              td= item._id  
+              td= item.email
+              td= item.fullname 
+              td 
+                img(src=`images/${item.image}`, style='width:100px;height:auto')
+              td 
+                a(href=`/customer/update/${item._id}`) 
+                  button.btn.btn-info Update
+                a(href=`/customer/delete/${item._id}`)
+                  button.btn.btn-danger Delete
+        else 
+          tr 
+            td(colspan='4') No Data
